@@ -1,0 +1,5 @@
+
+bool dummyf()
+{
+    return true;
+}

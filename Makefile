@@ -30,9 +30,9 @@ LDGTESTFLAGS = $(LDXXFLAGS) -lgtest_main -lgtest -lpthread
 
 default: all;
 
-%.o: $(SRC_DIR)/%.cpp $(DEPS)
+obj/%.o: $(SRC_DIR)/%.cpp $(DEPS)
 	@mkdir -p obj
-	$(CXX) -c -o obj/$@ $< $(CXXFLAGS)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 	
 $(LIBPROJECT): $(addprefix obj/, $(OBJECTS))
 	$(A) $(AFLAGS) $@ $^
@@ -51,7 +51,7 @@ all: $(PROJECT)
 .PHONY: clean
 
 clean:
-	rm -f *.o
+	rm -f obj/*.o
 
 cleanall: clean
 	rm -f $(PROJECT)

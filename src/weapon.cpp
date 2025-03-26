@@ -1,4 +1,4 @@
-#include "weapon.hpp"
+#include "player.hpp"
 
 Weapon :: Weapon(std :: string name, int dmg, int def):
     name(name), damage(dmg), defense(def)

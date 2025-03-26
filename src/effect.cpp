@@ -1,4 +1,4 @@
-#include "effect.hpp"
+#include "player.hpp"
 
 Effect :: Effect(std :: string name, std :: string desc, unsigned dur):
     name(name), description(desc), duration(dur)

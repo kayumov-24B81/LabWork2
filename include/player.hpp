@@ -1,7 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "weapon.hpp"
+#include "weapons.hpp"
 
 class Player
 {
@@ -10,16 +10,21 @@ class Player
         int health;
         int damage;
         int defense;
-        Weapon* weapon;
+        Weapon* weaponPtr;
     public:
         Player(std :: string name);
+        ~Player();
         std :: string getName();
         int getHealth();
         int getDamage();
         int getDefense();
+        void setWeapon(Weapon* ptr);
         void changeHealth(int hp);
         void changeDamage(int dmg);
         void changeDefense(int def);
+        void attack(Player* target);
+        void guard();
+        void empower();
 };
 
 #endif

@@ -1,6 +1,6 @@
 #ifndef GAME_HPP
 #define GAME_HPP
-#include "player.hpp"
+#include "effect_manager.hpp"
 
 class Game
 {

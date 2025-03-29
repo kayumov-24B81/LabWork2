@@ -19,3 +19,13 @@ unsigned Effect :: getDuration()
 {
     return duration;
 }
+
+void Effect :: setDuration(unsigned dur)
+{
+    duration = dur;
+}
+
+void Effect :: tick()
+{
+    duration -= 1;
+}

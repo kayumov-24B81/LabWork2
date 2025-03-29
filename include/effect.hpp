@@ -16,6 +16,8 @@ class Effect
         std :: string getName();
         std :: string getDesc();
         unsigned getDuration();
+        void setDuration(unsigned dur);
+        void tick();
         virtual void apply(Player* target) = 0;
         virtual void revert(Player* target) = 0;
 };

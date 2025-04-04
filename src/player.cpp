@@ -33,8 +33,12 @@ int Player :: getDefense()
 
 void Player :: setWeapon(Weapon* ptr)
 {
+    if(weaponPtr)
+    {
+        weaponPtr->revertStats(this);
+    }
     weaponPtr = ptr;
-    
+    weaponPtr->updateStats(this); 
 }
 
 void Player :: changeHealth(int hp)

@@ -18,6 +18,7 @@ class Weapon
         virtual void atkEffect(Player* owner, Player* target) = 0;
         virtual void defEffect(Player* owner) = 0;
         virtual void empEffect(Player* owner) = 0;
+        void updateStats(Player* owner);
         void revertStats(Player* owner);
 };
 

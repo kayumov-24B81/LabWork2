@@ -24,8 +24,15 @@ int Weapon :: getDefense()
     return defense;
 }
 
+void updateStats(Player* owner)
+{
+    owner->changeDefense(defense);
+    owner->changeDamage(damage);
+}
+
 void revertStats(Player* owner)
 {
-    /*to be done*/
+    owner->changeDefense(-defense);
+    owner->changeDamage(-damage);
 }
 

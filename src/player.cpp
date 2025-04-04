@@ -50,3 +50,18 @@ void Player :: changeDefense(int def)
     defense += def;
 }
 
+void Player :: attack(Player* target)
+{
+    weaponPtr->atkEffect(this, target);
+}
+
+void Player :: guard()
+{
+    weaponPtr->defEffect(this);
+}
+
+void Player :: empower()
+{
+    weaponPtr->empEffect(this);
+}
+

@@ -5,6 +5,10 @@ Weapon :: Weapon(std :: string name, int dmg, int def):
 {
 }
 
+Weapon :: ~Weapon()
+{
+}
+
 std :: string Weapon ::  getName()
 {
     return name;

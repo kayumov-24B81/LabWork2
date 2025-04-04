@@ -11,7 +11,7 @@ class Weapon
         int defense;
     public:
         Weapon(std :: string name, int dmg, int def);
-        virtual ~Weapon() = 0;
+        virtual ~Weapon();
         std :: string getName();
         int getDamage();
         int getDefense();

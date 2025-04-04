@@ -10,9 +10,13 @@ Sword :: Sword():
 {
 }
 
+Sword :: ~Sword()
+{
+}
+
 void Sword :: atkEffect(Player* owner, Player* target)
 {
-    target->changeHealth(-this->getDamage());
+    target->changeHealth(-1 * this->getDamage());
 }
 
 void Sword :: defEffect(Player* owner)

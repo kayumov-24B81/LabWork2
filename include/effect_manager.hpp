@@ -12,6 +12,7 @@ class EffectManager
     public:
        Player* owner;
        EffectManager();
+       ~EffectManager();
        void addEffect(Effect* effect);
        void update();
 };

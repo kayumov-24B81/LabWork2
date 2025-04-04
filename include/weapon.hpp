@@ -1,7 +1,7 @@
 #ifndef WEAPON_HPP
 #define WEAPON_HPP
 
-#include "effect.hpp"
+#include "effects.hpp"
 
 class Weapon
 {

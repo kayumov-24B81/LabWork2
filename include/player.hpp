@@ -11,6 +11,7 @@ class Player
         int damage;
         int defense;
         Weapon* weaponPtr;
+        EffectManager* effectsPtr;
     public:
         Player(std :: string name);
         ~Player();
@@ -25,6 +26,8 @@ class Player
         void attack(Player* target);
         void guard();
         void empower();
+        void addEffect(Effect* effect);
+        void updateEffects();
 };
 
 #endif

@@ -5,6 +5,14 @@ EffectManager :: EffectManager():
 {
 }
 
+EffectManager :: ~EffectManager()
+{
+    for(Effect* e : effects)
+    {
+        delete e;
+    }
+}
+
 void EffectManager :: addEffect(Effect* effect)
 {
     bool isSame = false;

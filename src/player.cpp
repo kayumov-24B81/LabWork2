@@ -3,6 +3,7 @@
 Player :: Player(std :: string name):
     name(name), health(20), damage(0), defense(0), weaponPtr(nullptr)
 {
+    effectsPtr.owner = this;
 }
 
 Player :: ~Player()
@@ -33,6 +34,7 @@ int Player :: getDefense()
 void Player :: setWeapon(Weapon* ptr)
 {
     weaponPtr = ptr;
+    
 }
 
 void Player :: changeHealth(int hp)
@@ -63,5 +65,15 @@ void Player :: guard()
 void Player :: empower()
 {
     weaponPtr->empEffect(this);
+}
+
+void Player :: addEffect(Effect* effect)
+{
+    effectsPtr->addEffect(effect);
+}
+
+void Player :: updateEffects()
+{
+    effectsPtr->update();
 }
 

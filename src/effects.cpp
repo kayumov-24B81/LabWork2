@@ -15,12 +15,12 @@ BrokenDefense :: ~BrokenDefense()
 {
 }
 
-void BrokenDefense apply(Player* target)
+void BrokenDefense :: apply(Player* target)
 {
-    target->changeDefense(-defRed);
+    target->changeDefense(-defenseReduction);
 }
 
-void BrokenDefense revert(Player* target)
+void BrokenDefense :: revert(Player* target)
 {
-    target->changeDefense(defRed);
+    target->changeDefense(defenseReduction);
 }

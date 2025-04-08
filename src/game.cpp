@@ -6,20 +6,29 @@ Game :: Game(): player(nullptr), enemy(nullptr)
 
 void Game :: initialize()
 {
-    player = new Player("Player");
-    enemy = new Player("Enemy");
+    try
+    {
+        player = new Player("Player");
+        enemy = new Player("Enemy");
     
-    player->setWeapon(new Sword());
-    enemy->setWeapon(new Sword());
+        ui.setPlayer(player);
+        ui.setEnemy(enemy);
     
-    isRunning = true;
+        player->setWeapon(new Sword());
+        enemy->setWeapon(new Sword());
+    
+        isRunning = true;
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << "Initialization fault: " << e.what() << std::endl;
+    }
 }
 
 void Game :: pickAction()
 {
     int action;
     std :: cout << "Pick your next action :" << std :: endl;
-    std :: cout <<"1.attack\n2.guard\n3.empower" << std :: endl;
     std :: cin >> action;
     interaction.setPlayerAction(static_cast<Action>(action - 1));
     interaction.setEnemyAction(ATTACK);
@@ -28,8 +37,6 @@ void Game :: pickAction()
 void Game :: update()
 {
     interaction.resolveInteractions(player, enemy);
-    std :: cout << "player hp: " << player->getHealth() << std :: endl;
-    std :: cout << "enemy hp: " << enemy->getHealth() << std :: endl;
 }
 
 void Game :: checkEnd()
@@ -51,9 +58,11 @@ void Game :: run()
     initialize();
     while(isRunning)
     {
+        ui.printUI();
         pickAction();
         update();
         checkEnd();
+        ui.continueGame();
     }
     shutdown();
 }

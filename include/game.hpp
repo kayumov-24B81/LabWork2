@@ -2,6 +2,7 @@
 #define GAME_HPP
 #include "effect_manager.hpp"
 #include "interaction_manager.hpp"
+#include "UI_manager.hpp"
 #include <iostream>
 
 class Game
@@ -11,6 +12,7 @@ class Game
         Player* enemy;
         bool isRunning;
         InteractionManager interaction;
+        UIManager ui;
     public:
         Game();
         void initialize();

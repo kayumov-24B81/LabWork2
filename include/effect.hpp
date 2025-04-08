@@ -12,7 +12,7 @@ class Effect
         unsigned duration;
     public:
         Effect(std :: string name, std :: string desc, unsigned dur);
-        virtual ~Effect() = 0;
+        virtual ~Effect();
         std :: string getName();
         std :: string getDesc();
         unsigned getDuration();

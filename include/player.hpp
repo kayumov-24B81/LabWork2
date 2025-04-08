@@ -2,6 +2,7 @@
 #define PLAYER_HPP
 
 #include "weapons.hpp"
+#include "effect_manager.hpp"
 
 class Player
 {
@@ -19,6 +20,8 @@ class Player
         int getHealth();
         int getDamage();
         int getDefense();
+        std :: vector<Effect*> getEffects();
+        Weapon* getWeapon();
         void setWeapon(Weapon* ptr);
         void changeHealth(int hp);
         void changeDamage(int dmg);

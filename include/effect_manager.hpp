@@ -1,7 +1,7 @@
 #ifndef EFFECT_MANAGER_HPP
 #define EFFECT_MANAGER_HPP
 
-#include "player.hpp"
+#include "effect.hpp"
 #include <algorithm>
 #include <vector>
 
@@ -13,6 +13,7 @@ class EffectManager
        Player* owner;
        EffectManager();
        ~EffectManager();
+       std :: vector<Effect*> getEffects();
        void addEffect(Effect* effect);
        void update();
 };

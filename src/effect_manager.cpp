@@ -1,8 +1,8 @@
 #include "game.hpp"
 
-EffectManager :: EffectManager():
-    owner(nullptr)
+EffectManager :: EffectManager()
 {
+    owner = nullptr;
 }
 
 EffectManager :: ~EffectManager()
@@ -11,6 +11,11 @@ EffectManager :: ~EffectManager()
     {
         delete e;
     }
+}
+
+std :: vector<Effect*> EffectManager :: getEffects()
+{
+    return effects;
 }
 
 void EffectManager :: addEffect(Effect* effect)

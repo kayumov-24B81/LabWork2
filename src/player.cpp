@@ -3,12 +3,14 @@
 Player :: Player(std :: string name):
     name(name), health(20), damage(0), defense(0), weaponPtr(nullptr)
 {
-    effectsPtr.owner = this;
+    effectsPtr = new EffectManager();
+    effectsPtr->owner = this;
 }
 
 Player :: ~Player()
 {
     delete weaponPtr;
+    delete effectsPtr;
 }
 
 std :: string Player :: getName()
@@ -29,6 +31,16 @@ int Player :: getDamage()
 int Player :: getDefense()
 {
     return defense;
+}
+
+std :: vector<Effect*> Player :: getEffects()
+{
+    return effectsPtr->getEffects();
+}
+
+Weapon* Player :: getWeapon()
+{
+    return weaponPtr;
 }
 
 void Player :: setWeapon(Weapon* ptr)

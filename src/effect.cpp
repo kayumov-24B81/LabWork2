@@ -5,6 +5,10 @@ Effect :: Effect(std :: string name, std :: string desc, unsigned dur):
 {
 }
 
+Effect :: ~Effect()
+{
+}
+
 std :: string Effect :: getName()
 {
     return name;
@@ -14,6 +18,7 @@ std :: string Effect :: getDesc()
 {
     return description;
 }
+
 
 unsigned Effect :: getDuration()
 {

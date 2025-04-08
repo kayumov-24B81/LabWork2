@@ -15,6 +15,7 @@ class UIManager
        void printStats(Player* player);
        void printUI();
        void continueGame();
+       void printLogs(std :: vector<std :: string> logs);
 };
 
 #endif

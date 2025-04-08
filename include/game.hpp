@@ -3,6 +3,7 @@
 #include "effect_manager.hpp"
 #include "interaction_manager.hpp"
 #include "UI_manager.hpp"
+#include "log_manager.hpp"
 #include <iostream>
 #include <cstdlib>
 

@@ -85,11 +85,20 @@ void Player :: empower()
 
 void Player :: addEffect(Effect* effect)
 {
-    effectsPtr->addEffect(effect);
+    effectsWaitList.push_back(effect);
 }
 
 void Player :: updateEffects()
 {
+    for(Effect* effect : effectsWaitList)
+    {
+        effectsPtr->addEffect(effect);
+    }
     effectsPtr->update();
+    effectsWaitList.clear();
 }
 
+std :: vector<Effect*> Player :: getEffectsWaitList()
+{
+    return effectsWaitList;
+}

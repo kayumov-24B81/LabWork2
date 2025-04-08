@@ -13,6 +13,7 @@ class Player
         int defense;
         Weapon* weaponPtr;
         EffectManager* effectsPtr;
+        std :: vector<Effect*> effectsWaitList;
     public:
         Player(std :: string name);
         ~Player();
@@ -31,6 +32,7 @@ class Player
         void empower();
         void addEffect(Effect* effect);
         void updateEffects();
+        std :: vector<Effect*> getEffectsWaitList();
 };
 
 #endif

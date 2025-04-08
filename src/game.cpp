@@ -16,6 +16,8 @@ void Game :: initialize()
     
         ui.setPlayer(player);
         ui.setEnemy(enemy);
+        
+        interaction.setLogs(new LogManager);
     
         player->setWeapon(new Sword());
         enemy->setWeapon(new Sword());
@@ -65,6 +67,7 @@ void Game :: run()
         pickAction();
         update();
         checkEnd();
+        ui.printLogs(interaction.getLogs());
         ui.continueGame();
     }
     shutdown();

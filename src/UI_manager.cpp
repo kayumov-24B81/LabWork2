@@ -57,3 +57,11 @@ void UIManager :: continueGame()
     std :: cin.get();
     clearConsole();
 }
+
+void UIManager :: printLogs(std :: vector<std :: string> logs)
+{
+    for(std :: string message : logs)
+    {
+        std :: cout << message;
+    }
+}

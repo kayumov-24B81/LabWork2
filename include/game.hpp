@@ -4,6 +4,7 @@
 #include "interaction_manager.hpp"
 #include "UI_manager.hpp"
 #include <iostream>
+#include <cstdlib>
 
 class Game
 {

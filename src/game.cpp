@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include <ctime>
 
 Game :: Game(): player(nullptr), enemy(nullptr)
 {
@@ -8,6 +9,8 @@ void Game :: initialize()
 {
     try
     {
+        srand(time(NULL));
+        
         player = new Player("Player");
         enemy = new Player("Enemy");
     

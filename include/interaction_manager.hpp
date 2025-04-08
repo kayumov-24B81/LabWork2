@@ -13,7 +13,10 @@ class InteractionManager
         InteractionManager();
         void setPlayerAction(Action act);
         void setEnemyAction(Action act);
+        void attackOnGuard(Player* attacker, Player* defender);
+        void attackOnEmpower(Player* attacker, Player* empowerer);
+        void attackOnAttack(Player* player1, Player* player2);
+        void resprite(Player* player1, Player* player2);
         void resolveInteractions(Player* player, Player* enemy);
 };
-
 #endif

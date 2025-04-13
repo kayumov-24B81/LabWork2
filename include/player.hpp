@@ -4,6 +4,8 @@
 #include "weapons.hpp"
 #include "effect_manager.hpp"
 
+enum Action {ATTACK = 0, GUARD = 1, EMPOWER = 2};
+
 class Player
 {
     private:
@@ -11,6 +13,7 @@ class Player
         int health;
         int damage;
         int defense;
+        Action action;
         Weapon* weaponPtr;
         EffectManager* effectsPtr;
         std :: vector<Effect*> effectsWaitList;
@@ -21,6 +24,7 @@ class Player
         int getHealth();
         int getDamage();
         int getDefense();
+        Action getAction();
         std :: vector<Effect*> getEffects();
         Weapon* getWeapon();
         void setWeapon(Weapon* ptr);

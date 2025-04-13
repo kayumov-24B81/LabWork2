@@ -43,6 +43,11 @@ Weapon* Player :: getWeapon()
     return weaponPtr;
 }
 
+Action Player :: getAction()
+{
+    return action;
+}
+
 void Player :: setWeapon(Weapon* ptr)
 {
     if(weaponPtr)
@@ -71,16 +76,19 @@ void Player :: changeDefense(int def)
 void Player :: attack(Player* target)
 {
     weaponPtr->atkEffect(this, target);
+    action = ATTACK;
 }
 
 void Player :: guard()
 {
     weaponPtr->defEffect(this);
+    action = GUARD;
 }
 
 void Player :: empower()
 {
     weaponPtr->empEffect(this);
+    action = EMPOWER;
 }
 
 void Player :: addEffect(Effect* effect)

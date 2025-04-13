@@ -17,7 +17,7 @@ void Game :: initialize()
         ui.setPlayer(player);
         ui.setEnemy(enemy);
         
-        interaction.setLogs(new LogManager);
+        interaction.setLogs(new Logger);
     
         player->setWeapon(new Sword());
         enemy->setWeapon(new Sword());
@@ -35,8 +35,23 @@ void Game :: pickAction()
     int action;
     std :: cout << "Pick your next action :" << std :: endl;
     std :: cin >> action;
-    interaction.setPlayerAction(static_cast<Action>(action - 1));
-    interaction.setEnemyAction(ATTACK);
+    switch(action)
+    {
+        case 1:
+            player->attack(enemy);
+            break;
+        case 2:
+            player->guard();
+            break;
+        case 3:
+            player->empower();
+            break;
+        default:
+            std :: cout << "Incorrect action nubmer!" << std :: endl;
+            std :: cout << "Pick your next action :" << std :: endl;
+            std :: cin >> action;
+    }
+    enemy->attack(player);
 }
 
 void Game :: update()

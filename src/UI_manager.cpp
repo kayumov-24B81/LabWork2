@@ -39,6 +39,7 @@ void UIManager :: printStats(Player* player)
         std :: cout << effect->getName() << "(" << effect->getDuration() << ")";
     }
     std :: cout << "]" << std :: endl;
+    std :: cout << std :: endl;
 }
 
 void UIManager :: printUI()
@@ -46,7 +47,7 @@ void UIManager :: printUI()
     std :: cout << "=== FIGHT === " << std :: endl;
     printStats(player);
     printStats(enemy);
-    std :: cout << "Available actions:\n1. attack\n2. defend\n3. empower" << std :: endl;
+    std :: cout << "Available actions:\n1.attack\n2.guard\n3.empower" << std :: endl;
     std :: cout << std :: endl;
 }
 

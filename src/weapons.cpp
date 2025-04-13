@@ -16,13 +16,12 @@ Sword :: ~Sword()
 
 void Sword :: atkEffect(Player* owner, Player* target)
 {
-    target->changeHealth(-1 * this->getDamage());
     target->addEffect(new BrokenDefense());
 }
 
 void Sword :: defEffect(Player* owner)
 {
-    owner->changeHealth(this->getDefense());
+    return;
 }
 
 void Sword :: empEffect(Player* owner)

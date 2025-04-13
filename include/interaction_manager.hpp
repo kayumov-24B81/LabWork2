@@ -1,27 +1,25 @@
 #ifndef INT_MANAGER_HPP
 #define INT_MANAGER_HPP
-#include "log_manager.hpp"
-
-enum Action {ATTACK, GUARD, EMPOWER};
+#include "logger.hpp"
 
 class InteractionManager
 {
     private:
-        LogManager* logs;
+        Logger* logs;
         Action playerAction;
         Action enemyAction;
     public:
         InteractionManager();
         ~InteractionManager();
-        void setLogs(LogManager* log);
-        void setPlayerAction(Action act);
-        void setEnemyAction(Action act);
-        void attackOnGuard(Player* attacker, Player* defender);
-        void attackOnEmpower(Player* attacker, Player* empowerer);
-        void attackOnAttack(Player* player1, Player* player2);
-        void resprite(Player* player1, Player* player2);
-        void resolveEffects(Player* player);
+        void setLogs(Logger* newLogs);
+        void dealDamage(Player* attacker, Player* target);
+        void handleExactActions(Player* player, Player* enemy);
+        void attackOnGuard(Player* attacker, Player* target);
+        void attackOnEmpower(Player* attacker, Player* target);
+        void guardAndEmpower(Player* guard, Player* empowerer);
+        void updateEffects(Player* player, Player* enemy);
         void resolveInteractions(Player* player, Player* enemy);
         std :: vector<std :: string> getLogs();
 };
+
 #endif

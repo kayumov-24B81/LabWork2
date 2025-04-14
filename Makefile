@@ -45,6 +45,9 @@ $(TESTPROJECT): $(LIBPROJECT) $(addprefix obj/, $(TEST_OBJECTS))
 	
 test: $(TESTPROJECT)
 	./$(TESTPROJECT)
+	
+docs:
+	doxygen Doxyfile
 
 all: $(PROJECT)
 

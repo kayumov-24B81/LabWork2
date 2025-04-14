@@ -66,8 +66,6 @@ void InteractionManager :: attackOnGuard(Player* attacker, Player* target)
     if(rand() % 2 == 0)
     {
         logs->addEvent(GuardEvent(nullptr, target));
-        target->guard();
-        attacker->attack(target);
         dealDamage(attacker, target);
     }
     else
@@ -87,7 +85,6 @@ void InteractionManager :: attackOnEmpower(Player* attacker, Player* target)
     {
         logs->addEvent(EmpowerEvent(nullptr, target));
     }
-    attacker->attack(target);
     dealDamage(attacker, target);
 }
 

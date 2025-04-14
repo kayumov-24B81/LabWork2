@@ -9,6 +9,8 @@ Laboratory work 2 - CCG in fantasy setting
 make
 ## Build test
 make test
+## Build documentation
+make docs
 ## Clean compiled files
 make clean
 ## Clean all files

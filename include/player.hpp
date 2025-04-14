@@ -28,6 +28,7 @@ class Player
         std :: vector<Effect*> getEffects();
         Weapon* getWeapon();
         void setWeapon(Weapon* ptr);
+        void setAction(Action newAction);
         void changeHealth(int hp);
         void changeDamage(int dmg);
         void changeDefense(int def);

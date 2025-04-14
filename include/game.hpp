@@ -4,6 +4,7 @@
 #include "interaction_manager.hpp"
 #include "UI_manager.hpp"
 #include "logger.hpp"
+#include "AI.hpp"
 #include <iostream>
 #include <cstdlib>
 
@@ -15,6 +16,7 @@ class Game
         bool isRunning;
         InteractionManager interaction;
         UIManager ui;
+        AI ai;
     public:
         Game();
         void initialize();

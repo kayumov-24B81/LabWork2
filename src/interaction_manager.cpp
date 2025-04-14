@@ -28,14 +28,15 @@ void InteractionManager :: dealDamage(Player* attacker, Player* target)
     }
     logs->addEvent(DamageEvent(attacker, target, damage));
     target->changeHealth(-1 * damage);
+    attacker->attack(target);
 }
 
 void InteractionManager :: handleExactActions(Player* player, Player* enemy)
 {
     if(playerAction == ATTACK)
     {
-        logs->addEvent(AttackEvent(player, player));
-        logs->addEvent(AttackEvent(enemy, enemy));
+        logs->addEvent(AttackEvent(player, enemy));
+        logs->addEvent(AttackEvent(enemy, player));
         if(rand() % 2 == 0)
         {
             dealDamage(player, enemy);
@@ -48,12 +49,16 @@ void InteractionManager :: handleExactActions(Player* player, Player* enemy)
     }
     if(playerAction == GUARD)
     {
+        player->guard();
+        enemy->guard();
         logs->addEvent(GuardEvent(nullptr, player));
         logs->addEvent(GuardEvent(nullptr, enemy));
         return;
     }
     if(playerAction == EMPOWER)
     {
+        player->empower();
+        player->empower();
         logs->addEvent(EmpowerEvent(nullptr, player));
         logs->addEvent(EmpowerEvent(nullptr, enemy));
         return;
@@ -63,6 +68,7 @@ void InteractionManager :: handleExactActions(Player* player, Player* enemy)
 void InteractionManager :: attackOnGuard(Player* attacker, Player* target)
 {
     logs->addEvent(AttackEvent(attacker, target));
+    target->guard();
     if(rand() % 2 == 0)
     {
         logs->addEvent(GuardEvent(nullptr, target));
@@ -84,12 +90,15 @@ void InteractionManager :: attackOnEmpower(Player* attacker, Player* target)
     else
     {
         logs->addEvent(EmpowerEvent(nullptr, target));
+        target->empower();
     }
     dealDamage(attacker, target);
 }
 
 void InteractionManager :: guardAndEmpower(Player* guard, Player* empowerer)
 {
+    guard->guard();
+    empowerer->empower();
     logs->addEvent(GuardEvent(nullptr, guard));
     logs->addEvent(EmpowerEvent(nullptr, empowerer));
 }
@@ -118,37 +127,30 @@ void InteractionManager :: resolveInteractions(Player* player, Player* enemy)
     if(playerAction == enemyAction)
     {
         handleExactActions(player, enemy);
-        return;
     }
-    if(playerAction == ATTACK and enemyAction == GUARD)
+    else if(playerAction == ATTACK and enemyAction == GUARD)
     {
         attackOnGuard(player, enemy);
-        return;
     }
-    if(playerAction == GUARD and enemyAction == ATTACK)
+    else if(playerAction == GUARD and enemyAction == ATTACK)
     {
         attackOnGuard(enemy, player);
-        return;
     }
-    if(playerAction == EMPOWER and enemyAction == ATTACK)
+    else if(playerAction == EMPOWER and enemyAction == ATTACK)
     {
         attackOnEmpower(enemy, player);
-        return;
     }
-    if(playerAction == ATTACK and enemyAction == EMPOWER)
+    else if(playerAction == ATTACK and enemyAction == EMPOWER)
     {
         attackOnEmpower(player, enemy);
-        return;
     }
-    if(playerAction == GUARD and enemyAction == EMPOWER)
+    else if(playerAction == GUARD and enemyAction == EMPOWER)
     {
         guardAndEmpower(player, enemy);
-        return;
     }
-    if(playerAction == EMPOWER and enemyAction == GUARD)
+    else if(playerAction == EMPOWER and enemyAction == GUARD)
     {
         guardAndEmpower(enemy, player);
-        return;
     }
     
     updateEffects(player, enemy);

@@ -1,4 +1,4 @@
-#include "player.hpp"
+#include "game.hpp"
 
 Player :: Player(std :: string name):
     name(name), health(20), damage(0), defense(0), weaponPtr(nullptr)
@@ -56,6 +56,11 @@ void Player :: setWeapon(Weapon* ptr)
     }
     weaponPtr = ptr;
     weaponPtr->updateStats(this); 
+}
+
+void Player :: setAction(Action newAction)
+{
+    action = newAction;
 }
 
 void Player :: changeHealth(int hp)

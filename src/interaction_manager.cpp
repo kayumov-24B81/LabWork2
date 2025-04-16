@@ -26,6 +26,7 @@ void InteractionManager :: dealDamage(Player* attacker, Player* target)
     {
         damage = attacker->getDamage();
     }
+    damage = static_cast<int>(damage * (((rand() % 100) / 100.0) + 1));
     logs->addEvent(DamageEvent(attacker, target, damage));
     target->changeHealth(-1 * damage);
     attacker->attack(target);
@@ -58,7 +59,7 @@ void InteractionManager :: handleExactActions(Player* player, Player* enemy)
     if(playerAction == EMPOWER)
     {
         player->empower();
-        player->empower();
+        enemy->empower();
         logs->addEvent(EmpowerEvent(nullptr, player));
         logs->addEvent(EmpowerEvent(nullptr, enemy));
         return;
@@ -77,6 +78,7 @@ void InteractionManager :: attackOnGuard(Player* attacker, Player* target)
     else
     {
         logs->addEvent(GuardEvent(attacker, target));
+        dealDamage(target, attacker);
     }
 }
 
@@ -110,6 +112,7 @@ void InteractionManager :: updateEffects(Player* player, Player* enemy)
         logs->addEvent(EffectEvent(player, effect));
     }
     player->updateEffects();
+    
     for(Effect* effect : enemy->getEffectsWaitList())
     {
         logs->addEvent(EffectEvent(enemy, effect));

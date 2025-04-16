@@ -64,7 +64,7 @@ std :: string GuardEvent :: formatMessage() const
     std :: string message = target->getName() + " gets into a defensive stance\n";
     if(attacker != nullptr)
     {
-        message += target->getName() + " succesfully blocks " + attacker->getName() + "'s attack\n";
+        message += target->getName() + " succesfully parries " + attacker->getName() + "'s attack and strikes back\n";
     }
     return message;
 }

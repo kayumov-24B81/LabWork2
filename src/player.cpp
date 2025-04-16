@@ -1,7 +1,7 @@
 #include "game.hpp"
 
 Player :: Player(std :: string name):
-    name(name), health(20), damage(0), defense(0), weaponPtr(nullptr)
+    name(name), health(100), damage(0), defense(0), weaponPtr(nullptr)
 {
     effectsPtr = new EffectManager();
     effectsPtr->owner = this;

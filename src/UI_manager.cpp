@@ -36,7 +36,7 @@ void UIManager :: printStats(Player* player)
     << "- Effects: [";
     for(Effect* effect : effects)
     {
-        std :: cout << effect->getName() << "(" << effect->getDuration() << ")";
+        std :: cout << effect->getName() << "(" << effect->getDuration() << ") ";
     }
     std :: cout << "]" << std :: endl;
     std :: cout << std :: endl;

@@ -28,6 +28,7 @@ void EffectManager :: addEffect(Effect* effect)
             effects[i]->setDuration(std :: max(effect->getDuration(), effects[i]->getDuration()));
             delete effect;
             isSame = true;
+            break;
         }
     }
     if(!isSame)
@@ -39,13 +40,19 @@ void EffectManager :: addEffect(Effect* effect)
 
 void EffectManager :: update()
 {
-    for(unsigned i = 0; i < effects.size(); ++i)
+    unsigned i = 0;
+    while(i < effects.size())
     {
         effects[i]->tick();
         if(effects[i]->getDuration() == 0)
         {
             effects[i]->revert(owner);
+            delete effects[i];
             effects.erase(effects.begin() + i);
+        }
+        else
+        {
+            i += 1;
         }
     }
 }

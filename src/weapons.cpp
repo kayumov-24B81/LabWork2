@@ -6,7 +6,7 @@ Sword :: Sword(int dmg, int def):
 }
 
 Sword :: Sword():
-    Weapon("Sword", 3, 3)
+    Weapon("Sword", 10, 3)
 {
 }
 
@@ -21,10 +21,10 @@ void Sword :: atkEffect(Player* owner, Player* target)
 
 void Sword :: defEffect(Player* owner)
 {
-    return;
+    owner->addEffect(new DamageIncrease(1, 2));
 }
 
 void Sword :: empEffect(Player* owner)
 {
-    owner->changeDamage(2);
+    owner->addEffect(new NecessarySacrifice());
 }

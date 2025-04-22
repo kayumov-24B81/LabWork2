@@ -66,12 +66,12 @@ void Game :: checkEnd()
 {
     if(player->getHealth() < 0)
     {
-        std :: cout << "You are dead" << std :: endl;
+        ui.gameEnd(enemy);
         isRunning = false;
     }
     if(enemy->getHealth() < 0)
     {
-        std :: cout << "Enemy is dead" << std :: endl;
+        ui.gameEnd(player);
         isRunning = false;
     }
 }
@@ -83,9 +83,10 @@ void Game :: run()
     {
         ui.printUI();
         pickAction();
+        ui.printUI();
         update();
-        checkEnd();
         ui.printLogs(interaction.getLogs());
+        checkEnd();
         ui.continueGame();
     }
     shutdown();

@@ -16,6 +16,8 @@ class UIManager
        void printUI();
        void continueGame();
        void printLogs(std :: vector<std :: string> logs);
+       void gameEnd(Player* winner);
+       void printWithDelay(std :: string text);
 };
 
 #endif

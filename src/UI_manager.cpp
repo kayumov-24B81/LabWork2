@@ -1,6 +1,8 @@
 #include "game.hpp"
 #include <unistd.h>
 #include <limits>
+#include <chrono>
+#include <thread>
 
 UIManager :: UIManager():
     player(nullptr), enemy(nullptr)
@@ -34,12 +36,16 @@ void UIManager :: printStats(Player* player)
     << "- Weapon: " << weapon->getName()
     << "(" << weapon->getDamage() << ", " << weapon->getDefense() << ")" << std :: endl
     << "- Effects: [";
-    for(Effect* effect : effects)
+    if(!effects.empty())
     {
-        std :: cout << effect->getName() << "(" << effect->getDuration() << ") ";
+        std :: cout << effects[0]->getName() << "(" << effects[0]->getDuration() << ")";
+        for(unsigned i = 1; i < effects.size(); ++i)
+        {
+            std :: cout << ", " << effects[i]->getName() << "(" << effects[i]->getDuration() << ")";
+        }
     }
     std :: cout << "]" << std :: endl;
-    std :: cout << std :: endl;
+    std :: cout << std :: endl; 
 }
 
 void UIManager :: printUI()
@@ -63,6 +69,21 @@ void UIManager :: printLogs(std :: vector<std :: string> logs)
 {
     for(std :: string message : logs)
     {
-        std :: cout << message;
+        printWithDelay(message);
+    }
+}
+
+void UIManager :: gameEnd(Player* winner)
+{
+    std :: cout << std :: endl << "=== FIGHT RESULT ===" << std :: endl;
+    std :: cout << winner->getName() << " won!" << std :: endl;
+}
+
+void UIManager :: printWithDelay(std :: string text)
+{
+    for (char c : text) 
+    {
+        std :: cout << c << std::flush;
+        std :: this_thread ::sleep_for(std::chrono::milliseconds(20));
     }
 }

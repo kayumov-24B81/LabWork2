@@ -66,12 +66,12 @@ void Game :: update()
 
 void Game :: checkEnd()
 {
-    if(player->getHealth() < 0)
+    if(player->getHealth() == 0)
     {
         ui.gameEnd(enemy);
         isRunning = false;
     }
-    if(enemy->getHealth() < 0)
+    if(enemy->getHealth() == 0)
     {
         ui.gameEnd(player);
         isRunning = false;

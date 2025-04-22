@@ -2,4 +2,4 @@ obj/*.o
 *.a
 main
 test-main
-html
+html/*

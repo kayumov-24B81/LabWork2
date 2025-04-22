@@ -7,6 +7,7 @@
 #include "AI.hpp"
 #include <iostream>
 #include <cstdlib>
+#include "enemy_randomizer.hpp"
 
 class Game
 {
@@ -17,6 +18,7 @@ class Game
         InteractionManager interaction;
         UIManager ui;
         AI ai;
+        EnemyRandomizer rand;
     public:
         Game();
         void initialize();

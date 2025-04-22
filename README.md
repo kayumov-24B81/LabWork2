@@ -4,7 +4,7 @@
 ## Contacts
 st128100@student.spbu.ru
 ## Description
-Laboratory work 2 - CCG in fantasy setting
+Laboratory work 2 - RPG
 ## Build
 make
 ## Build test
@@ -16,6 +16,10 @@ make clean
 ## Clean all files
 make cleanall - clear all files
 ## Run 
-./main - main program
+./game - main program
 ## Run test
-./test-main - test program
+./test-game - test program
+## Delete object files
+make clean
+## Delete all made files
+make cleanall

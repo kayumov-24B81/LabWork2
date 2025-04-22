@@ -1,4 +1,4 @@
-PROJECT = main
+PROJECT = game
 
 TESTPROJECT = test-$(PROJECT)
 
@@ -8,9 +8,9 @@ SRC_DIR = src
 
 INCLUDE_DIR = include
 
-OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, %.o, $(wildcard $(SRC_DIR)/*.cpp))
+OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, %.o, $(filter-out $(SRC_DIR)/main.cpp, $(wildcard $(SRC_DIR)/*.cpp)))
 
-TEST-OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, %.o, $(wildcard $(SRC_DIR)/test_*.cpp))
+TEST_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, %.o, $(wildcard $(SRC_DIR)/test_*.cpp))
 
 DEPS = $(wildcard $(INCLUDE_DIR)/*.h)
 
@@ -33,7 +33,7 @@ default: all;
 obj/%.o: $(SRC_DIR)/%.cpp $(DEPS)
 	@mkdir -p obj
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
-	
+    
 $(LIBPROJECT): $(addprefix obj/, $(OBJECTS))
 	$(A) $(AFLAGS) $@ $^
 
@@ -42,10 +42,9 @@ $(PROJECT): obj/main.o $(LIBPROJECT)
 
 $(TESTPROJECT): $(LIBPROJECT) $(addprefix obj/, $(TEST_OBJECTS))
 	$(CXX) -o $@ $(addprefix obj/, $(TEST_OBJECTS)) $(LDGTESTFLAGS)
-	
+    
 test: $(TESTPROJECT)
-	./$(TESTPROJECT)
-	
+    
 docs:
 	doxygen Doxyfile
 
@@ -60,3 +59,4 @@ cleanall: clean
 	rm -f $(PROJECT)
 	rm -f $(LIBPROJECT)
 	rm -f $(TESTPROJECT)
+

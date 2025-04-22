@@ -24,7 +24,9 @@ void Game :: initialize()
     
         player->setWeapon(new Sword());
         enemy->setWeapon(new Sword());
-    
+        
+        rand.randomizeEntity(enemy);
+        
         isRunning = true;
     }
     catch (std::exception& e)

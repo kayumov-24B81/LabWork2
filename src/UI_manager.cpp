@@ -81,9 +81,12 @@ void UIManager :: gameEnd(Player* winner)
 
 void UIManager :: printWithDelay(std :: string text)
 {
-    for (char c : text) 
+    if(!text.empty())
     {
-        std :: cout << c << std::flush;
-        std :: this_thread ::sleep_for(std::chrono::milliseconds(20));
+        for (char c : text) 
+        {
+            std :: cout << c << std::flush;
+            std :: this_thread ::sleep_for(std::chrono::milliseconds(20));
+        }
     }
 }

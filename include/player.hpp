@@ -27,6 +27,10 @@ class Player
         Action getAction();
         std :: vector<Effect*> getEffects();
         Weapon* getWeapon();
+        void setDamage(int dmh);
+        void setHealth(int hp);
+        void setDefense(int def);
+        void setName(std :: string newName);
         void setWeapon(Weapon* ptr);
         void setAction(Action newAction);
         void changeHealth(int hp);

@@ -20,22 +20,30 @@ std :: string Player :: getName()
 
 int Player :: getHealth()
 {
-    return health;
+    if(health > 0) return health;
+    else return 0;
 }
 
 int Player :: getDamage()
 {
-    return damage;
+    if(damage > 0) return damage;
+    else return 0;
 }
 
 int Player :: getDefense()
 {
-    return defense;
+    if(defense > 0) return defense;
+    else return 0;
 }
 
 std :: vector<Effect*> Player :: getEffects()
 {
     return effectsPtr->getEffects();
+}
+
+void Player :: setName(std :: string newName)
+{
+    name = newName;
 }
 
 Weapon* Player :: getWeapon()
@@ -46,6 +54,21 @@ Weapon* Player :: getWeapon()
 Action Player :: getAction()
 {
     return action;
+}
+
+void Player :: setDamage(int dmg)
+{
+    damage = dmg;
+}
+
+void Player :: setHealth(int hp)
+{
+    health = hp;
+}
+
+void Player :: setDefense(int def)
+{
+    defense = def;
 }
 
 void Player :: setWeapon(Weapon* ptr)

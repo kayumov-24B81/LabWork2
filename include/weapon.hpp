@@ -3,6 +3,12 @@
 
 #include "effects.hpp"
 
+/**
+    \brief Parent class for various weapons. This class and its subclasses are responsible for applying effects when certain actions occur and changing the characteristics of the wearer.
+    
+    Weapons will increase the wearer stats when equipped and revert when removed using the coressponding functions. This class has virtual methods for each possible player action that generally aplly effects on target or owner. Destructor is virtual too.
+*/
+
 class Weapon
 {
     private:

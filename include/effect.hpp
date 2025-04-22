@@ -4,6 +4,12 @@
 
 class Player;
 
+/**
+    \brief Parent class. This class and its child classes is responsible for short-term changes to the character's characteristics.
+    
+    Parent class for various effects Classes. Contains fully virtual methods that apply changes to player's stats and revert them. The changes are specified in child classes. 
+*/
+
 class Effect
 {
     private:

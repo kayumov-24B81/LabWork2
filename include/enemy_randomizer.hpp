@@ -3,6 +3,12 @@
 
 #include "player.hpp"
 
+/**
+    \brief Class responsible for creating a variety of enemies using presets
+    
+    In constructor vectors "names" and "characteristics" are initialized with some enemies presets, containing coefficients for basic characteristics. When randomizeEntity() function is called characteristics changes with corresponding entity name are applied.
+*/
+
 class EnemyRandomizer
 {
     private:

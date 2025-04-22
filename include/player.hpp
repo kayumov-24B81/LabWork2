@@ -6,6 +6,12 @@
 
 enum Action {ATTACK = 0, GUARD = 1, EMPOWER = 2};
 
+/**
+    \brief The Player class models an entity in a system where entities interact through actions (attack, defense, buff) and are affected by effects.
+    
+    Player class contains basic attributes (name, health, damage, defense) and provides methods to change them and perform actions. All interactions between entities and weapons and the effects manager occur through Player class methods. It is worth noting that one Player class object does not directly affect the state of another Player class object, but it is its methods that are used by the Effect and Interaction Manager classes.
+*/
+
 class Player
 {
     private:

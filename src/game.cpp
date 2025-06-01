@@ -37,24 +37,32 @@ void Game :: initialize()
 
 void Game :: pickAction()
 {
-    int action;
+    std :: string action;
+    bool picked_action = false;
     std :: cout << "Pick your next action :" << std :: endl;
     std :: cin >> action;
-    switch(action)
+    while(!picked_action)
     {
-        case 1:
+        picked_action = true;
+        if(action == "1" || action == "attack")
+        {
             player->setAction(ATTACK);
-            break;
-        case 2:
+        }
+        else if(action == "2" || action == "guard")
+        {
             player->setAction(GUARD);
-            break;
-        case 3:
+        }
+        else if(action == "3" || action == "empower")
+        {
             player->setAction(EMPOWER);
-            break;
-        default:
-            std :: cout << "Incorrect action nubmer!" << std :: endl;
+        }
+        else
+        {
+            picked_action = false;
+            std :: cout << "Incorrect action: write the name or the number of action" << std :: endl;
             std :: cout << "Pick your next action :" << std :: endl;
             std :: cin >> action;
+        }
     }
     ai.chooseAction();
 }

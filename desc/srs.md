@@ -85,6 +85,14 @@ The only user class of the system is the Player. It is assumed that the Player:
 - Each effect must have a 'duration' field defining the number of turns for which the effect is active.
 - The system shall automatically decrease the `duration` value of each active effect by 1 at the end of the turn of the entity to which it is applied.
 - When an effect's `duration` value reaches 0, the system shall automatically cancel the effect's action (revert the modified characteristic to its original value) and remove it from the entity's list of active effects.
+- The system shall implement effects listed int the following table:
+
+### Effects table
+
+| Effect Name | Effect Description |
+| Broken Defense | Decreases target's `armor` value by 2 points for 2 turns |
+| Damage Increase | Increases target's `damage` value by 1 points for 2 turns |
+| Necessary Sacrifice | Increases target's `damage` value by 2 points for 2 turns, deals target 4 damage when expired |
 
 ##### 3.1.3. Enemy Generation Requirements
 
@@ -106,7 +114,7 @@ The only user class of the system is the Player. It is assumed that the Player:
 
 ###### 3.1.5.2. Action Resolution Rules
 
-The system shall resolve actions according to the following decision matrix:
+- The system shall resolve actions according to the following decision matrix:
 
 ### **Action Resolution Decision Matrix**
 
@@ -141,6 +149,13 @@ The system shall resolve actions according to the following decision matrix:
 - An equipped weapon shall modify the base characteristics of its wielder .
 - A weapon shall have the ability to apply effects to a target upon a specific action.
 - The system shall support the creation of specific weapon types that inherit from the base weapon structure and define their own modifiers and effect triggers.
+- The system shall implement specific weapon types and their own modifiers and effect triggers according to the weapons table:
+
+### Weapons table
+
+|  Weapon Name | Weapon Modifiers | Effect Triggers |
+| Sword | **damage**: +10<br>**defense**: +3 | **On attack**: Apply 'Broken Defense' effect to the target.<br>**On guard**: Apply 'Damage increase' effect to weapon owner.<br> **On empower**: Apply 'Necessary Sacrifice' effect to weapon owner.|
+
 
 #### 3.2. Non-Functional Requirements
 

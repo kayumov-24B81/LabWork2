@@ -3,9 +3,9 @@
 #include "player.hpp"
 
 /**
-    \brief Class responsible for enemies action logic
-    
-    Simple enemy AI. When chooseAction() function is called randomly selects action and calls corresponding entity method.
+ * \brief Class responsible for enemies action logic
+ 
+   Simple enemy AI. When chooseAction() function is called randomly selects action and calls corresponding entity method.
 */
 
 class AI

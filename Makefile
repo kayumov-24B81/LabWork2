@@ -45,8 +45,11 @@ $(TESTPROJECT): $(LIBPROJECT) $(addprefix obj/, $(TEST_OBJECTS))
     
 test: $(TESTPROJECT)
     
-docs:
+doc:
 	doxygen Doxyfile
+
+class:
+	plantuml class_diagram.puml -o ./desc
 
 all: $(PROJECT)
 
@@ -59,4 +62,5 @@ cleanall: clean
 	rm -f $(PROJECT)
 	rm -f $(LIBPROJECT)
 	rm -f $(TESTPROJECT)
+	rm -f ./desc/class_diagram.png
 

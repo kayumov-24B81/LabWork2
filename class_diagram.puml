@@ -1,0 +1,308 @@
+@startuml
+
+enum eventType
+{
+    ACTION
+    RESULT
+}
+
+enum Action
+{
+    ATTACK
+    GUARD
+    EMPOWER
+}
+
+class Weapon
+{
+  - string: name
+  - damage: int
+  - defense: int
+  --
+  + getName(): string
+  + getDamage(): int
+  + getDefense(): int
+  + atkEffect(Player* owner, Player*): void
+  + defEffect(Player*): void
+  + empEffect(Player*): void
+  + updateStats(Player*): void
+  + revertStats(Player*): void
+}
+    
+class UIManager {
+  - player: Player*
+  - enemy: Player*
+  --
+  + setEnemy(Player*): void
+  + setPlayer(Player*): void
+  + clearConsole(): void
+  + printStats(Player*): void
+  + printUI(): void
+  + continueGame(): void
+  + printLogs(std :: vector<sstring>): void
+  + gameEnd(Player*): void
+  + printWithDelay(string): void
+}
+
+class Sword 
+{
+  + Sword(int dmg, int def)
+  + Sword()
+  + atkEffect(Player* owner, Player*): void
+  + defEffect(Player*): void
+  + empEffect(Player*): void
+}
+
+class Player 
+{
+  - name: string
+  - health: int
+  - damage: int
+  - defense: int
+  - action: Action
+  - weaponPtr: Weapon*
+  - effectsPtr: EffectManager*
+  - effectsWaitList: std :vector<Effect*>
+  --
+  + getName(): string
+  + getHealth(): int
+  + getDamage(): int
+  + getDefense(): int
+  + getAction(): Action
+  + getEffects(): std::vector<Effect*>
+  + getWeapon(): Weapon*
+  + setDamage(int): void
+  + setHealth(int): void
+  + setDefense(int): void
+  + setName(string): void
+  + setWeapon(Weapon*): void
+  + setAction(Action): void
+  + changeHealth(int): void
+  + changeDamage(int): void
+  + changeDefense(int): void
+  + attack(Player*): void
+  + guard(): void
+  + empower(): void
+  + addEffect(Effect* effect): void
+  + updateEffects(): void
+  + getEffectsWaitList(): std::vector<Effect*>
+}
+
+class NecessarySacrifice 
+{
+  - damageMagnification: int
+  - healthReduction: int
+  --
+  + NecessarySacrifice(int dmgMagn, int hpRed, unsigned dur)
+  + NecessarySacrifice()
+  + apply(Player*): void
+  + revert(Player*): void
+}
+
+class Logger 
+{
+  - logs: std::vector<string>
+  --
+  + getLogs(): std::vector<string>
+  + addEvent( Event&): void
+  + resetLogger(): void
+}
+
+class InteractionManager 
+{
+  - logs: Logger*
+  - playerAction: Action
+  - enemyAction: Action
+  --
+  + setLogs(Logger*): void
+  + dealDamage(Player* attacker, Player*): void
+  + handleExactActions(Player* player, Player*): void
+  + attackOnGuard(Player* attacker, Player*): void
+  + attackOnEmpower(Player* attacker, Player*): void
+  + guardAndEmpower(Player* guard, Player*): void
+  + updateEffects(Player* player, Player*): void
+  + resolveInteractions(Player* player, Player*): void
+  + getLogs(): std::vector<string>
+}
+
+class GuardEvent 
+{
+  - attacker: Player*
+  - target: Player*
+  - blockedDamage: int
+  --
+  + formatMessage(): string const override
+}
+
+class Game 
+{
+  - player: Player*
+  - enemy: Player*
+  - isRunning: bool
+  - interaction: InteractionManager
+  - ui: UIManager
+  - ai: AI
+  - rand: EnemyRandomizer
+  --
+  + initialize(): void
+  + pickAction(): void
+  + update(): void
+  + checkEnd(): void
+  + run(): void
+  + shutdown(): void
+}
+
+class Event 
+{
+  - type: eventType
+  --
+  + formatMessage(): string const
+  + getType(): eventType const
+  + setType(eventType): void
+}
+
+class EnemyRandomizer 
+{
+  - HEALTH_MOD_POS: const unsigned
+  - DAMAGE_MOD_POS: const unsigned
+  - DEFENSE_MOD_POS: const unsigned
+  - names:  std::vector<std::pair<string, std::vector<float>>>
+  - characteristics: std::vector<std::pair<string, std::vector<float>>>
+  --
+  + randomizeEntity(Player*): void
+}
+
+class EmpowerEvent 
+{
+  - attacker: Player*
+  - target: Player*
+  --
+  + formatMessage(): string const override
+}
+
+class EffectManager 
+{
+  - effects: std::vector<Effect*>
+  --
+  + owner: Player*
+  + getEffects(): std::vector<Effect*>
+  + addEffect(Effect*): void
+  + update(): void
+}
+
+class EffectEvent 
+{
+  - target: Player*
+  - effect: Effect*
+  - type: eventType
+  --
+  + formatMessage(): string const override
+}
+
+class Effect 
+{
+  - name: string
+  - description: string
+  - duration: unsigned
+  --
+  + getName(): string
+  + getDesc(): string
+  + getDuration(): unsigned
+  + setDuration(unsigned): void
+  + tick(): void
+  + apply(Player*): void
+  + revert(Player*): void
+}
+
+class DamageIncrease
+{
+  - damageMagnification: int
+  --
+  + DamageIncrease(int dmgMagn, unsigned dur)
+  + DamageIncrease()
+  + apply(Player*): void override
+  + revert(Player*): void override
+}
+
+class DamageEvent 
+{
+  - attacker: Player*
+  - target: Player*
+  - damage: int
+  --
+  + formatMessage(): string const override
+}
+
+class BrokenDefense 
+{
+  - defenseReduction: int
+  --
+  + apply(Player*): void override
+  + revert(Player*): void override
+}
+
+class AttackEvent 
+{
+  - attacker: Player*
+  - target: Player*
+  --
+  + formatMessage(): string const override
+}
+
+class AI 
+{
+  - entity: Player*
+  - target: Player*
+  --
+  + setEntity(Player*): void
+  + setTarget(Player*): void
+  + chooseAction(): void
+}
+
+GuardEvent --|> Event
+AttackEvent --|> Event
+DamageEvent --|> Event
+EmpowerEvent --|> Event
+EffectEvent --|> Event
+
+Sword --|> Weapon
+
+NecessarySacrifice --|> Effect
+DamageIncrease --|> Effect
+BrokenDefense --|> Effect
+
+Logger *-- InteractionManager
+
+Weapon o-- Player
+
+Effect o-- EffectManager
+Effect o-- Player
+Effect o-- Weapon
+
+EffectManager o-- Player
+
+Player o-- EffectManager
+Player o-- AI
+Player *-- Game
+
+AI o- Game
+
+InteractionManager *-- Game
+
+UIManager *-- Game
+
+EnemyRandomizer *-- Game
+
+Event ..> Logger
+Player ..> InteractionManager
+Player ..> UIManager
+Player ..> Weapon
+Player ..> EnemyRandomizer
+Player ..> Event
+
+Event --> eventType
+
+Player --> Action
+InteractionManager --> Action
+
+@enduml

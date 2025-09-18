@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['game_213',['Game',['../classGame.html#ad59df6562a58a614fda24622d3715b65',1,'Game']]],
+  ['gameend_214',['gameEnd',['../classUIManager.html#af686f9f843c0444e5731505242fdfd3f',1,'UIManager']]],
+  ['getaction_215',['getAction',['../classPlayer.html#aaec2cce8cabaa09250aa111b5a189877',1,'Player']]],
+  ['getdamage_216',['getDamage',['../classPlayer.html#a42c3782e95e76ae9aa4123d1610c9ee2',1,'Player::getDamage()'],['../classWeapon.html#a19dbeaf6f535354dba50ee1ac3318804',1,'Weapon::getDamage()']]],
+  ['getdefense_217',['getDefense',['../classPlayer.html#af4ddaaa4e5a1317033c0735f118ca8e5',1,'Player::getDefense()'],['../classWeapon.html#aa28a1223cb8aff11a5dbd386ed7f1f06',1,'Weapon::getDefense()']]],
+  ['getdesc_218',['getDesc',['../classEffect.html#ab69dc5ee8bf11cd901966e93bb18936a',1,'Effect']]],
+  ['getduration_219',['getDuration',['../classEffect.html#ad970801f78a09cb6c770bbd783d10b24',1,'Effect']]],
+  ['geteffects_220',['getEffects',['../classEffectManager.html#a2fc4f798cba42a8eb07d17e074f5e20a',1,'EffectManager::getEffects()'],['../classPlayer.html#a932084656972a510b7c969c4d38b1d99',1,'Player::getEffects()']]],
+  ['geteffectswaitlist_221',['getEffectsWaitList',['../classPlayer.html#a49e9b502a132781c50670d44e0250b2d',1,'Player']]],
+  ['gethealth_222',['getHealth',['../classPlayer.html#abcb15d249bed9a4ab0ab86b52b0d747a',1,'Player']]],
+  ['getlogs_223',['getLogs',['../classInteractionManager.html#af44e7f5b0655790c4dc4d55fa8958595',1,'InteractionManager::getLogs()'],['../classLogger.html#aafc7bd16cfd626c6fd7dc42d7e3b3351',1,'Logger::getLogs()']]],
+  ['getname_224',['getName',['../classEffect.html#ad9030a6b314f4a9e648908524fb83270',1,'Effect::getName()'],['../classPlayer.html#af1aa472885d589516f483e26e786600e',1,'Player::getName()'],['../classWeapon.html#a0cc1adfac060d480dbb6d10b96de0a0d',1,'Weapon::getName()']]],
+  ['gettype_225',['getType',['../classEvent.html#a5c335c4fd29ac59c920a03ac264acd18',1,'Event']]],
+  ['getweapon_226',['getWeapon',['../classPlayer.html#a45caa6677b511998bb359a5c6048ea5d',1,'Player']]],
+  ['guard_227',['guard',['../classPlayer.html#a7caaef8fefca5ef4e2d9a93828112712',1,'Player']]],
+  ['guardandempower_228',['guardAndEmpower',['../classInteractionManager.html#a7c58095a1109d6a348076a9ad7e371b1',1,'InteractionManager']]],
+  ['guardevent_229',['GuardEvent',['../classGuardEvent.html#a61ff370c738ebd75bdb0969043f8ea9a',1,'GuardEvent']]]
+];

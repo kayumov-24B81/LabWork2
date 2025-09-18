@@ -4,22 +4,15 @@
 ## Contacts
 st128100@student.spbu.ru
 ## Description
-Laboratory work 2 - RPG
+Laboratory work 2 - "L2" turn-based RPG. All documentation can be found in the desc folder.
 ## Build
-make
-## Build test
-make test
-## Build documentation
-make docs
-## Clean compiled files
-make clean
-## Clean all files
-make cleanall - clear all files
+- make - build game executable
+- make test - build test executable
+- make doc - build doxygen documentation
+- make class - build class diagram
+## Clean
+- make clean - clean compiled files
+- make cleanall - clean all created files (except for doxygen ones)
 ## Run 
-./game - main program
-## Run test
-./test-game - test program
-## Delete object files
-make clean
-## Delete all made files
-make cleanall
+- ./game - main program
+- ./test-game - test program

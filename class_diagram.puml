@@ -271,38 +271,38 @@ NecessarySacrifice --|> Effect
 DamageIncrease --|> Effect
 BrokenDefense --|> Effect
 
-Logger *-- InteractionManager
+Logger *-- InteractionManager: passes event class objects
 
 Weapon o-- Player
 
-Effect o-- EffectManager
-Effect o-- Player
-Effect o-- Weapon
+Effect o-- EffectManager: manages
+Effect o-- Player: stores
+Effect o-- Weapon: creates and applies
 
-EffectManager o-- Player
+EffectManager o-- Player: owns and updates state
 
 Player o-- EffectManager
-Player o-- AI
+Player o-- AI: controls enemy actions
 Player *-- Game
 
-AI o- Game
+AI o- Game: uses to determine enemy actions
 
-InteractionManager *-- Game
+InteractionManager *-- Game: uses to calculate the result of the player's interactions with the AI and the subsequent change in the states of entities
 
-UIManager *-- Game
+UIManager *-- Game: uses to notify player of the current state of the game
 
-EnemyRandomizer *-- Game
+EnemyRandomizer *-- Game: uses to generate an enemy
 
-Event ..> Logger
-Player ..> InteractionManager
-Player ..> UIManager
-Player ..> Weapon
-Player ..> EnemyRandomizer
-Player ..> Event
+Event ..> Logger: receives information and converts it into fromatted text(logs)
+Player ..> InteractionManager: changes state
+Player ..> UIManager: displays current state
+Player ..> Weapon: changes characteristics 
+Player ..> EnemyRandomizer: changes characteristics  
+Player ..> Event: documents changes in state
 
-Event --> eventType
+Event --> eventType: used to determine the desired formatting
 
-Player --> Action
-InteractionManager --> Action
+Player --> Action: used to store actions
+InteractionManager --> Action: used to calculate the result of the interaction
 
 @enduml

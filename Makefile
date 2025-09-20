@@ -1,14 +1,18 @@
-PROJECT = main
+PROJECT = game
 
 TESTPROJECT = test-$(PROJECT)
 
 LIBPROJECT = $(PROJECT).a
 
-OBJECTS = dummy.o
+SRC_DIR = src
 
-TEST-OBJECTS = test-main.o
+INCLUDE_DIR = include
 
-DEPS = (wildcard *.h)
+OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, %.o, $(filter-out $(SRC_DIR)/main.cpp, $(wildcard $(SRC_DIR)/*.cpp)))
+
+TEST_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, %.o, $(wildcard $(SRC_DIR)/test_*.cpp))
+
+DEPS = $(wildcard $(INCLUDE_DIR)/*.h)
 
 A = ar
 
@@ -16,7 +20,7 @@ AFLAGS = rsv
 
 CXX = g++
 
-CXXFLAGS = -I. -std=c++17 -Werror -Wpedantic -Wall -g -fPIC
+CXXFLAGS = -I$(INCLUDE_DIR) -std=c++17 -Werror -Wpedantic -Wall -g -fPIC
 
 LDXXFLAGS = $(CXXFLAGS) -L. -l:$(LIBPROJECT)
 
@@ -26,28 +30,37 @@ LDGTESTFLAGS = $(LDXXFLAGS) -lgtest_main -lgtest -lpthread
 
 default: all;
 
-%.o: %.cpp $(DEPS)
+obj/%.o: $(SRC_DIR)/%.cpp $(DEPS)
+	@mkdir -p obj
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
-	
-$(LIBPROJECT): $(OBJECTS)
+    
+$(LIBPROJECT): $(addprefix obj/, $(OBJECTS))
 	$(A) $(AFLAGS) $@ $^
 
-$(PROJECT): main.o $(LIBPROJECT)
-	$(CXX) -o $@ main.o $(LDXXFLAGS)
+$(PROJECT): obj/main.o $(LIBPROJECT)
+	$(CXX) -o $@ $< $(LDXXFLAGS)
 
-$(TESTPROJECT): $(LIBPROJECT) $(TEST-OBJECTS) 
-	$(CXX) -o $@ $(TEST-OBJECTS) $(LDGTESTFLAGS)
-	
+$(TESTPROJECT): $(LIBPROJECT) $(addprefix obj/, $(TEST_OBJECTS))
+	$(CXX) -o $@ $(addprefix obj/, $(TEST_OBJECTS)) $(LDGTESTFLAGS)
+    
 test: $(TESTPROJECT)
+    
+doc:
+	doxygen Doxyfile
+
+class:
+	plantuml class_diagram.puml -o ./desc
 
 all: $(PROJECT)
 
 .PHONY: clean
 
 clean:
-	rm -f *.o
+	rm -f obj/*.o
 
 cleanall: clean
 	rm -f $(PROJECT)
 	rm -f $(LIBPROJECT)
 	rm -f $(TESTPROJECT)
+	rm -f ./desc/class_diagram.png
+

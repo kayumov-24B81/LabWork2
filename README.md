@@ -4,16 +4,15 @@
 ## Contacts
 st128100@student.spbu.ru
 ## Description
-Laboratory work 2 - CCG in fantasy setting
+Laboratory work 2 - "L2" turn-based RPG. All documentation can be found in the desc folder.
 ## Build
-make
-## Build test
-make test
-## Clean compiled files
-make clean
-## Clean all files
-make cleanall - clear all files
+- make - build game executable
+- make test - build test executable
+- make doc - build doxygen documentation
+- make class - build class diagram
+## Clean
+- make clean - clean compiled files
+- make cleanall - clean all created files (except for doxygen ones)
 ## Run 
-./main - main program
-## Run test
-./test-main - test program
+- ./game - main program
+- ./test-game - test program
